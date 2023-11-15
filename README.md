@@ -1,57 +1,70 @@
-# vue-music-app
+# SpotiVue
 
-This template should help get you started developing with Vue 3 in Vite.
+SpotiVue is a music player application built with Vue 3 and Firebase, allowing users to upload and manage their music library seamlessly.
 
-## Recommended IDE Setup
+## Table of Contents
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
 
-## Customize configuration
+## Installation
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+To get started with SpotiVue, follow these steps:
 
-## Project Setup
+1. **Clone the repository:**
 
-```sh
+```bash
+git clone https://github.com/your-username/spotivue.git
+```
+
+2. **Navigate to the project directory:**
+
+```bash
+cd spotivue
+```
+
+3. **Install dependencies:**
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+4. **Configure Firebase:**
 
-```sh
-npm run dev
+- Create a [https://firebase.google.com/](Firebase) project and set up the necessary credentials.
+- Add your Firebase configuration details in `src/includes/firebase.js`.
+
+5. **Run the application:**
+
+```bash
+npm run serve
 ```
 
-### Compile and Minify for Production
+## Usage
 
-```sh
-npm run build
-```
+SpotiVue provides a user-friendly interface for managing your music. Here's how to use it:
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+1. **Upload Songs:**
 
-```sh
-npm run test:unit
-```
+- Click the "Upload" button to add your favorite songs to your library.
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+2. **Create Playlists:**
 
-```sh
-npm run test:e2e:dev
-```
+- Organize your music by creating custom playlists.
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+3. **Explore and Enjoy:**
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+- Explore your library by artist, album, or genre and enjoy a seamless listening experience.
 
-```sh
-npm run build
-npm run test:e2e
-```
+## Features
 
-### Lint with [ESLint](https://eslint.org/)
+- [x] **Song Upload:** Easily upload your favorite songs to expand your music library.
 
-```sh
-npm run lint
-```
+- [] **Playlist Management:** Create and manage playlists for a personalized listening experience.
+
+- [x] **Firebase Authentication:** Securely log in using Firebase authentication, supporting Google accounts and other options.
+
+- [x] **Firebase Storage:** Securely log in using Firebase authentication, supporting Google accounts and other options.
+
+## Made with ❤️ and passion 🤓

@@ -4,11 +4,11 @@ import 'firebase/firestore'
 import 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAdMwPeSEv5MJjYWEPntXxCkbc1J9oB0ng',
-  authDomain: 'spotivue-music-player.firebaseapp.com',
-  projectId: 'spotivue-music-player',
-  storageBucket: 'spotivue-music-player.appspot.com',
-  appId: '1:957138977643:web:00418c6587f0f2ef25c22e'
+  apiKey: '',
+  authDomain: '',
+  projectId: '',
+  storageBucket: '',
+  appId: ''
 }
 
 const app = firebase.initializeApp(firebaseConfig)
