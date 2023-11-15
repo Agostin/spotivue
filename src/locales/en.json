@@ -1,0 +1,13 @@
+{
+  "auth": {
+    "tos_label_prefix": "I accept SpotiVue's {0}.",
+    "tos_label_suffix": "Terms of Service"
+  },
+  "home": {
+    "title": "Listen to Great Music!",
+    "motto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dolor mollis, congue augue non, venenatis elit. Nunc justo eros, suscipit ac aliquet imperdiet, venenatis et sapien. Duis sed magna pulvinar, fringilla lorem eget, ullamcorper urna."
+  },
+  "song": {
+    "comment_count_label": "No comments yet | 1 comment | All comments ({count})"
+  }
+}

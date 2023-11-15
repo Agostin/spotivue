@@ -1,0 +1,122 @@
+<template>
+  <main>
+    <!-- Introduction -->
+    <section class="mb-8 py-20 text-white text-center relative">
+      <div
+        class="absolute inset-0 w-full h-full bg-contain introduction-bg"
+        style="background-image: url(assets/img/header.png)"
+      ></div>
+      <div class="container mx-auto">
+        <div class="text-white main-header-content">
+          <h1 class="font-bold text-5xl mb-5">{{ $t('home.title') }}</h1>
+          <p class="w-full md:w-8/12 mx-auto">
+            {{ $t('home.motto') }}
+          </p>
+        </div>
+      </div>
+
+      <img
+        class="relative block mx-auto mt-5 -mb-20 w-auto max-w-full"
+        src="/assets/img/introduction-music.png"
+      />
+    </section>
+
+    <!-- Main Content -->
+    <section class="container mx-auto">
+      <div class="bg-white rounded border border-gray-200 relative flex flex-col">
+        <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
+          <span class="card-title">Songs</span>
+          <!-- Icon -->
+          <i class="fa fa-headphones-alt float-right text-green-400 text-xl"></i>
+        </div>
+        <!-- Playlist -->
+        <ol id="playlist">
+          <li
+            v-for="song in songs"
+            :key="song.docId"
+            class="flex justify-between items-center p-3 pl-6 cursor-pointer transition duration-300 hover:bg-gray-50"
+          >
+            <div>
+              <router-link
+                :to="{ name: 'song', params: { id: song.docId } }"
+                class="font-bold block text-gray-600"
+                >{{ song.modified_name }}</router-link
+              >
+              <span class="text-gray-500 text-sm">{{ song.display_name }}</span>
+            </div>
+
+            <div class="text-gray-600 text-lg">
+              <router-link
+                custom
+                v-slot="{ navigate }"
+                :to="{ name: 'song', params: { id: song.docId }, hash: '#comments' }"
+              >
+                <span class="comments" @click="navigate">
+                  <i class="fa fa-comments text-gray-600"></i>
+                  {{ song.comments_count }}
+                </span>
+              </router-link>
+            </div>
+          </li>
+        </ol>
+        <!-- .. end Playlist -->
+      </div>
+    </section>
+  </main>
+</template>
+
+<script>
+import { songsCollection } from '../includes/firebase'
+
+export default {
+  name: 'HomeView',
+  data() {
+    return {
+      songs: [],
+      maxSongsPerPage: 3,
+      songsRequestPending: false
+    }
+  },
+  created() {
+    this.updateSongsList()
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    async updateSongsList() {
+      if (this.songsRequestPending) {
+        return
+      }
+
+      let snapshots
+      this.songsRequestPending = true
+
+      if (this.songs.length) {
+        const lastDoc = await songsCollection.doc(this.songs[this.songs.length - 1].docId).get()
+        snapshots = await songsCollection
+          .orderBy('modified_name')
+          .startAfter(lastDoc)
+          .limit(this.maxSongsPerPage)
+          .get()
+      } else {
+        snapshots = await songsCollection.orderBy('modified_name').get()
+      }
+
+      snapshots.forEach((_s) => this.songs.push({ docId: _s.id, ..._s.data() }))
+
+      this.songsRequestPending = false
+    },
+    async handleScroll() {
+      const { scrollTop, offsetHeight } = document.documentElement
+      const { innerHeight } = window
+      const bottomOfWindow = Math.round(scrollTop) + innerHeight === offsetHeight
+
+      if (bottomOfWindow) {
+        await this.updateSongsList()
+      }
+    }
+  }
+}
+</script>
