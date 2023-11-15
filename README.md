@@ -32,7 +32,7 @@ npm install
 
 4. **Configure Firebase:**
 
-- Create a [https://firebase.google.com/](Firebase) project and set up the necessary credentials.
+- Create a [Firebase project](https://firebase.google.com/) and set up the necessary credentials.
 - Add your Firebase configuration details in `src/includes/firebase.js`.
 
 5. **Run the application:**
